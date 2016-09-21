@@ -1,0 +1,7 @@
+{
+  "name": "bear-bookstore",
+  "version": "0.0.1",
+  "dependencies": {
+    "log4js": "latest"
+  }
+}
