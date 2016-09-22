@@ -1,22 +1,22 @@
 var Order = function() {};
 var fn = Order.prototype;
 
-/* id */
-fn.setId = function(id) {
-  this.id = id;
+/* code */
+fn.setCode = function(code) {
+  this.code = code;
 };
 
-fn.getId = function() {
-  return this.id;
+fn.getCode = function() {
+  return this.code;
 };
 
 /* book */
-fn.setProducts = function(products) {
-  this.products = products;
+fn.setProduct = function(product) {
+  this.product = product;
 };
 
-fn.getProducts = function() {
-  return this.products;
+fn.getProduct = function() {
+  return this.product;
 };
 
 /* user */
@@ -27,7 +27,5 @@ fn.setUser = function(user) {
 fn.getUser = function() {
   return this.user;
 };
-
-/*  */
 
 exports.Order = Order;

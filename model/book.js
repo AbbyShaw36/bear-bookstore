@@ -64,4 +64,13 @@ fn.getDescription = function() {
   return this.description;
 };
 
+/* quatity */
+fn.setQuatity = function(quatity) {
+  this.quatity = quatity;
+};
+
+fn.getQuatity = function() {
+  return this.quatity;
+};
+
 exports.Book = Book;
