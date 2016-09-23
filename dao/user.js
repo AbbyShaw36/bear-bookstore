@@ -29,11 +29,9 @@ dao.create = function(user, cb) {
     console.log(result);
     logger.trace("----------------------------------------------");
 
-    result = {
+    cb(null, {
       id: result.insertId
-    };
-
-    cb(null, result);
+    });
   });
 };
 
@@ -135,7 +133,6 @@ dao.getList = function(list, cb) {
   }
 
   sql = mysql.format(sql, inserts);
-
   console.log(sql);
 
   connection.query(sql, function(err, result) {
@@ -148,11 +145,9 @@ dao.getList = function(list, cb) {
     logger.trace("[get user list result]--------------------------");
     console.log(result);
 
-    result = {
+    cb(null, {
       list: result
-    };
-
-    cb(null, result);
+    });
   });
 };
 
@@ -194,11 +189,9 @@ dao.update = function(user, cb) {
     logger.trace("[update user result]--------------------------");
     console.log(result);
 
-    result = {
+    cb(null, {
       row: result.affectedRows
-    };
-
-    cb(null, result);
+    });
   });
 };
 

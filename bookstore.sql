@@ -11,8 +11,6 @@ DROP TABLE `book`;
 CREATE TABLE IF NOT EXISTS `book` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
-	`type` int(11) NOT NULL,
-	`author` int(11) NOT NULL,
 	`price` int(11) NOT NULL,
 	`description` varchar(255) DEFAULT "",
 	`publishTime` bigint(20) NOT NULL,
@@ -32,6 +30,18 @@ CREATE TABLE IF NOT EXISTS `author` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
 	PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+DROP TABLE `book_type`;
+CREATE TABLE IF NOT EXISTS `book_type` (
+	`book` int(11) NOT NULL,
+	`type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+DROP TABLE `book_author`;
+CREATE TABLE IF NOT EXISTS `book_author` (
+	`book` int(11) NOT NULL,
+	`author` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 DROP TABLE `order`;

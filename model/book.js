@@ -73,4 +73,13 @@ fn.getQuatity = function() {
   return this.quatity;
 };
 
+/* publishTime */
+fn.setPublishTime = function(publishTime) {
+  this.publishTime = publishTime;
+};
+
+fn.getPublishTime = function() {
+  return this.publishTime;
+};
+
 exports.Book = Book;
