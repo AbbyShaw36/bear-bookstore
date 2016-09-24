@@ -52,7 +52,7 @@ dao.update = function(book, cb) {
   var price = book.getPrice();
   var description = book.getDescription();
   var sql =
-    "UPDATE user SET name=?,stock=?,price=?,description=? WHERE id=?";
+    "UPDATE book SET name=?,stock=?,price=?,description=? WHERE id=?";
   var inserts = [name, stock, price, description, id];
 
   sql = mysql.format(sql, inserts);
@@ -69,6 +69,36 @@ dao.update = function(book, cb) {
     console.log(result);
 
     cb(null, {
+      row: result.affectedRows
+    });
+  });
+};
+
+/*
+ * 更新书籍库存
+ * @param {obj} book 书籍模型
+ * @param {function} cb 回调函数
+ * */
+dao.updateStock = function(book,cb) {
+  var id = book.getId();
+  var stock = book.getStock();
+  var sql = "UPDATE book SET stock=? WHERE id=?";
+  var inserts = [stock,id];
+
+  sql = mysql.format(sql,inserts);
+  console.log(sql);
+
+  connection.query(sql,function(err,result) {
+    if (err) {
+      logger.error("[update book stock error] - " + err.message);
+      cb(error.internalServerErr);
+      return;
+    }
+
+    logger.trace("[update book stock result]-----------------------");
+    console.log(result);
+
+    cb(null,{
       row: result.affectedRows
     });
   });
@@ -100,7 +130,6 @@ dao.delete = function(book, cb) {
     cb(null, result);
   });
 };
-
 
 /*
  * 获取书籍
