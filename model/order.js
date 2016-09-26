@@ -1,5 +1,5 @@
-var Order = function() {};
-var fn = Order.prototype;
+var OrderForm = function() {};
+var fn = OrderForm.prototype;
 
 /* code */
 fn.setCode = function(code) {
@@ -28,4 +28,22 @@ fn.getUser = function() {
   return this.user;
 };
 
-exports.Order = Order;
+/* publishTime */
+fn.setPublishTime = function(publishTime) {
+  this.publishTime = publishTime;
+};
+
+fn.getPublishTime = function() {
+  return this.publishTime;
+};
+
+/* status */
+fn.setStatus = function(status) {
+  this.status = status;
+};
+
+fn.getStatus = function() {
+  return this.status;
+};
+
+exports.OrderForm = OrderForm;

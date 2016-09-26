@@ -44,17 +44,19 @@ CREATE TABLE IF NOT EXISTS `book_author` (
 	`author` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-DROP TABLE `order`;
-CREATE TABLE IF NOT EXISTS `order` (
-	`code` int(11) NOT NULL,
+DROP TABLE `orderForm`;
+CREATE TABLE IF NOT EXISTS `orderForm` (
+	`code` varchar(32),
 	`user` int(11) NOT NULL,
 	`publishTime` bigint(20) NOT NULL,
+	--  订单状态，0为下订单，1为已发货，2为已收货，默认为0
+	`status` ENUM('0', '1','2') DEFAULT '0',
 	PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 DROP TABLE `order_product`;
 CREATE TABLE IF NOT EXISTS `order_product` (
-	`code` int(11) NOT NULL,
+	`code` varchar(32),
 	`product` int(11) NOT NULL,
 	`quatity` int(11) NOT NULL,
 	PRIMARY KEY (`code`)

@@ -12,3 +12,8 @@ exports.userNotExists = {
   type: "resourceNotFound",
   description: "User not exists"
 };
+
+exports.bookNotExists = {
+  type: "resourceNotFound",
+  description: "Book not exists"
+};

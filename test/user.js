@@ -17,6 +17,8 @@ function dao_create() {
   });
 }
 
+// dao_create();
+
 function dao_get() {
   var name = "abc";
   var user = new User();
@@ -74,4 +76,4 @@ function service_signup() {
   });
 }
 
-service_signup();
+// service_signup();
