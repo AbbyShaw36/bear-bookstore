@@ -51,7 +51,7 @@ dao.get = function(user, cb) {
     console.log(result);
 
     cb(null, {
-      user: result[0].userId
+      user: result[0] ? result[0].userId : undefined
     });
   });
 };

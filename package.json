@@ -5,6 +5,8 @@
     "log4js": "0.6.38",
     "mysql": "2.11.1",
     "sha1": "1.1.1",
-    "mongoose": "4.6.1"
+    "mongoose": "4.6.1",
+    "url": "latest",
+    "cookie": "latest"
   }
 }

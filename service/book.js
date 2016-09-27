@@ -1,4 +1,6 @@
 var bookDao = require("../dao/book").dao;
+var logger = require("../util/logger").logger;
+var error = require("../util/error");
 var service = {};
 
 service.create = function(book, cb) {
@@ -22,6 +24,8 @@ service.update = function(book, cb) {
   });
 };
 
-service.
+service.delete = function(book, cb) {
+  bookDao.delete(book, cb);
+};
 
 exports.service = service;
