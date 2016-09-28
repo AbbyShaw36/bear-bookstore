@@ -23,7 +23,27 @@ exports.userNotExists = {
   description: "User not exists"
 };
 
+exports.usernameNotProvided = {
+  type: "illegalArgument",
+  description: "Username must provided"
+};
+
+exports.passwordNotProvided = {
+  type: "illegalArgument",
+  description: "Password must provided"
+};
+
 exports.bookNotExists = {
   type: "resourceNotFound",
   description: "Book not exists"
+};
+
+exports.bookNameNotProvided = {
+  type: "illegalArgument",
+  description: "Book name must provided"
+};
+
+exports.bookPriceNotProvided = {
+  type: "illegalArgument",
+  description: "Book price must provided"
 };

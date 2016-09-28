@@ -4,11 +4,7 @@ var logger = require("../util/logger").logger;
 var error = require("../util/error");
 var User = require("../model/user").User;
 var service = {};
-var admin = {
-  id: 1,
-  name: "admin",
-  password: sha1("123456")
-};
+var admin = global.config.admin;
 
 /* 登录 */
 service.signin = function(user, cb) {

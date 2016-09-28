@@ -1,10 +1,10 @@
-var admin = require("../web/admin").admin;
+var admin = require("../web/admin");
 var book = require("../web/book").book;
 
 exports.handle = {
   "/api/admin/sign": {
     "POST": admin.signin,
-    "DELETE": admin.signup
+    "DELETE": admin.signout
   },
   "/api/admin/book": {
     "POST": book.create,
