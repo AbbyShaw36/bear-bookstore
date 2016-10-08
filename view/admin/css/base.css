@@ -1,0 +1,55 @@
+/* base */
+
+html,
+body {
+  font-family: arial, sans-serif;
+}
+
+input {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.inline {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+/* form */
+
+.label {
+  display: inline-block;
+}
+
+.input {
+  height: 30px;
+  padding: 0 4px;
+  border: 1px solid #dcdcdc;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+
+/* logo */
+
+.logo {
+  font-size: 32px;
+  font-weight: bolder;
+  color: #fff;
+}
+
+
+/* btn */
+
+.btn {
+  background-color: #ffb752;
+  line-height: 30px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.btn-desabled {
+  background-color: #dcdcdc;
+}

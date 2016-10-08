@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title 后台管理系统-登录
+    meta(charset="utf-8")
+    link(rel="stylesheet",href="../../admin/css/normalize.css")
+    link(rel="stylesheet",href="../../admin/css/base.css")
+    link(rel="stylesheet",href="../../admin/css/signin.css")
+  body
+    .page
+      .signin
+        .signin__head 登录后台管理系统
+        .signin__body
+          .row
+            label(for="signin-name").label.signin__label 用户名
+            input(type="text",id="signin-name").input.signin__input
+          .row
+            label(for="signin-password").label.signin__label 密码
+            input(type="text",id="signin-password").input.signin__input
+          .row
+            input(type="button",value="登录").btn.signin__btn

@@ -149,7 +149,7 @@ function checkSignedIn(req, res, fn, isSign, isAdmin) {
 exports.middleware = function(req, res, fn) {
   var pathname = url.parse(req.url).pathname;
 
-  // 后台操作，都需要登录
+  // 后台操作
   if (pathname.indexOf("/admin/") !== -1) {
     // 登录操作
     if (pathname === "/api/admin/sign" && req.method === "POST") {
