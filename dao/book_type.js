@@ -19,6 +19,7 @@ dao.create = function(book, cb) {
   var arr = [];
   var type = null;
 
+  // 循环创建sql语句
   for (type in typeArr) {
     arr.push("(?,?)");
     inserts = inserts.concat(id, type);
@@ -28,6 +29,7 @@ dao.create = function(book, cb) {
   sql = mysql.format(sql, inserts);
   console.log(sql);
 
+  // 执行sql语句
   connection.query(sql, function(err, result) {
     if (err) {
       logger.error("[create book type error] - " + err.message);
@@ -38,6 +40,7 @@ dao.create = function(book, cb) {
     logger.trace("[create book type result]-----------------");
     console.log(result);
 
+    // 回调返回执行结果
     cb(null, result);
   });
 };

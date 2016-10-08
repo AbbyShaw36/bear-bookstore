@@ -24,6 +24,8 @@ exports.getQuery = function(req, cb) {
       query = querystring.parse(data);
       cb(query);
     });
+
+    return;
   }
 
   logger.warn("[get query string error] - request method not allowed.");

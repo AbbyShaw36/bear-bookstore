@@ -11,7 +11,7 @@ var dao = {};
  * */
 dao.create = function(type, cb) {
   var name = type.getName();
-  var sql = "INSERT INTo type(name) VAUEST(?)";
+  var sql = "INSERT INTO type(name) VAUEST(?)";
   var inserts = [name];
 
   sql = mysql.format(sql, inserts);
@@ -29,6 +29,36 @@ dao.create = function(type, cb) {
 
     cb(null, {
       id: result.insertId
+    });
+  });
+};
+
+/*
+ * 更新类型
+ * @param {obj} type 类型对象
+ * @param {function} cb 回调函数
+ * */
+dao.update = function(type, cb) {
+  var id = type.getId();
+  var name = type.getName();
+  var sql = "UPDATE FROM type SET name=? WHERE id=?";
+  var inserts = [name, id];
+
+  sql = mysql.format(sql, inserts);
+  console.log(sql);
+
+  connection.query(sql, function(err, result) {
+    if (err) {
+      logger.error("[update type error] - " + err.message);
+      cb(error.internalServerErr);
+      return;
+    }
+
+    logger.trace("[update type result]--------------------");
+    console.log(result);
+
+    cb(null, {
+      row: result.affectedRows
     });
   });
 };

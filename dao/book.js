@@ -79,16 +79,16 @@ dao.update = function(book, cb) {
  * @param {obj} book 书籍模型
  * @param {function} cb 回调函数
  * */
-dao.updateStock = function(book,cb) {
+dao.updateStock = function(book, cb) {
   var id = book.getId();
   var stock = book.getStock();
   var sql = "UPDATE book SET stock=? WHERE id=?";
-  var inserts = [stock,id];
+  var inserts = [stock, id];
 
-  sql = mysql.format(sql,inserts);
+  sql = mysql.format(sql, inserts);
   console.log(sql);
 
-  connection.query(sql,function(err,result) {
+  connection.query(sql, function(err, result) {
     if (err) {
       logger.error("[update book stock error] - " + err.message);
       cb(error.internalServerErr);
@@ -98,7 +98,7 @@ dao.updateStock = function(book,cb) {
     logger.trace("[update book stock result]-----------------------");
     console.log(result);
 
-    cb(null,{
+    cb(null, {
       row: result.affectedRows
     });
   });
@@ -127,7 +127,9 @@ dao.delete = function(book, cb) {
     logger.trace("[delete book result]---------------");
     console.log(result);
 
-    cb(null, result);
+    cb(null, {
+      row: result.affectedRows
+    });
   });
 };
 
@@ -185,13 +187,13 @@ dao.getList = function(list, cb) {
   }
 
   if (price) {
-    arr.push("price=?");
-    inserts.push(price);
+    arr = arr.concat("price>=?", "price<=?");
+    inserts = inserts.concat(price.min, price.max);
   }
 
   if (stock) {
-    arr.push("stock=?");
-    inserts.push(stock);
+    arr = arr.concat("stock>=?", "stock<=?");
+    inserts = inserts.concat(stock.min, stock.max);
   }
 
   if (publishTime) {
@@ -199,7 +201,9 @@ dao.getList = function(list, cb) {
     inserts = inserts.concat(publishTime.min, publishTime.max);
   }
 
-  sql += " WHERE " + arr.join(" AND ");
+  if (arr.length > 0) {
+    sql += " WHERE " + arr.join(" AND ");
+  }
 
   if (limit) {
     sql += " LIMIT ?";

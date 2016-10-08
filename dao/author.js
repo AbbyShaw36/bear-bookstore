@@ -34,6 +34,36 @@ dao.create = function(author, cb) {
 };
 
 /*
+ * 更新作者信息
+ * @param {obj} author 作者对象
+ * @param {function} cb 回调函数
+ * */
+dao.update = function(author, cb) {
+  var id = author.getId();
+  var name = author.getName();
+  var sql = "UPDATE FROM author SET name=? WHERE id=?";
+  var inserts = [name, id];
+
+  sql = mysql.format(sql, inserts);
+  console.log(sql);
+
+  connection.query(sql, function(err, result) {
+    if (err) {
+      logger.error("[update author error] - " + err.message);
+      cb(error.internalServerErr);
+      return;
+    }
+
+    logger.trace("[update author result]----------------");
+    console.log(result);
+
+    cb(null, {
+      row: result.affectedRows
+    });
+  });
+};
+
+/*
  * 删除作者
  * @param {obj} author 作者对象
  * @param {function} cb 回调函数
