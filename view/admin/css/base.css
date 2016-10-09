@@ -11,6 +11,10 @@ input {
   outline: none;
 }
 
+ul {
+  list-style: none;
+}
+
 .inline {
   display: inline-block;
   vertical-align: middle;
@@ -35,7 +39,12 @@ input {
 /* logo */
 
 .logo {
-  font-size: 32px;
+  margin: 0;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: 24px;
   font-weight: bolder;
   color: #fff;
 }
@@ -52,4 +61,136 @@ input {
 
 .btn-desabled {
   background-color: #dcdcdc;
+}
+
+
+/* header */
+
+.main-header {
+  background-color: #3f7fcf;
+  line-height: 40px;
+}
+
+.main-header .logo {
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: middle;
+}
+
+.topbar {
+  float: right;
+  margin: 0;
+  margin-right: 20px;
+  padding: 0;
+  line-height: 42px;
+}
+
+.topbar__item {
+  position: relative;
+  float: left;
+}
+
+.topbar__item a {
+  display: block;
+  padding: 0 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.topbar__item.news {
+  background-color: #d15b47;
+}
+
+.topbar__item.user {
+  background-color: #5695e3;
+}
+
+.topbar__item .submenu {
+  position: absolute;
+  bottom: -48px;
+  right: 0;
+  display: none;
+  width: auto;
+  min-width: 140px;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #dcdcdc;
+  box-sizing: border-box;
+}
+
+.topbar__item .submenu:before {
+  position: absolute;
+  top: -6px;
+  right: 6px;
+  display: inline-block;
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-left: 1px solid #dcdcdc;
+  border-top: 1px solid #dcdcdc;
+  transform: rotate(45deg);
+}
+
+.topbar__item .submenu a {
+  color: #333;
+}
+
+.topbar__item:hover .submenu {
+  display: block;
+}
+
+
+/* 侧边栏 */
+
+.main-aside {
+  float: left;
+  width: 200px;
+  background-color: #fff;
+  border-right: 4px solid #2f7fcf;
+}
+
+.main-nav .nav__list {
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav .nav__item {
+  margin-bottom: -1px;
+  border: 1px solid #dcdcdc;
+  border-width: 1px 0;
+}
+
+.main-nav .nav__item a {
+  display: block;
+  padding: 0 20px;
+  background-color: #f9f9f9;
+  line-height: 40px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bolder;
+  color: #333;
+}
+
+.main-nav .nav__item a:hover {
+  background-color: #fff;
+  color: #3f7fcf;
+}
+
+.main-nav .nav__item.active a {
+  position: relative;
+  background-color: #fff;
+  color: #3f7fcf;
+}
+
+.main-nav .nav__item.active a:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: "";
+  width: 4px;
+  border-style: solid;
+  border-width: 20px 10px 20px 0;
+  border-color: transparent #3f7fcf transparent transparent;
 }
