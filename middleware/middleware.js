@@ -37,7 +37,7 @@ var responses = {
   }
 };
 
-var mustSigned = [];
+var notMustSigned = [];
 
 // 执行操作
 function dofn(req, res, fn) {
@@ -55,11 +55,9 @@ function dofn(req, res, fn) {
  * 检查是否已登录
  * @param {obj} req 请求
  * @param {obj} res 响应
- * @param {function} fn 执行操作
- * @param {boolean} isSign 是否为登录操作或获取登录页面
- * @param {boolean} isAdmin 是否为后台操作
+ * @param {function} cb 回调函数
  * */
-function api_checkSignedIn(req, res, fn, isSign, isAdmin) {
+function checkSignedIn(req, res, cb) {
   var cookies = cookie.parse(req.headers.cookie || "");
   var sessionId = cookies.sessionId;
   var pathname = url.parse(req.url).pathname;
@@ -67,12 +65,7 @@ function api_checkSignedIn(req, res, fn, isSign, isAdmin) {
 
   // 没有cookie为sessionId，未登录
   if (!sessionId) {
-    if (isSign) {
-      dofn(req, res, fn);
-      return;
-    }
-
-    responses.unauthorized(res, pathname);
+    cb(false);
     return;
   }
 
@@ -94,36 +87,20 @@ function api_checkSignedIn(req, res, fn, isSign, isAdmin) {
 
     // session不存在，未登录
     if (!id) {
-      if (isSign) {
-        dofn(req, res, fn);
-        return;
-      }
-
-      responses.unauthorized(res, pathname);
+      cb(false);
       return;
     }
 
     // 后台操作,判断结束
-    if (isAdmin) {
+    if (pathname.indexOf("/admin/") !== -1) {
       // 用户为高级管理员，已登录
       if (id === global.config.admin.id) {
         logger.trace("The user is admin.");
-
-        if (isSign) {
-          responses.success(res, {});
-          return;
-        }
-
-        dofn(req, res, fn);
+        cb(true);
         return;
       }
 
-      if (isSign) {
-        dofn(req, res, fn);
-        return;
-      }
-
-      responses.unauthorized(res, pathname);
+      cb(false);
       return;
     }
 
@@ -138,54 +115,87 @@ function api_checkSignedIn(req, res, fn, isSign, isAdmin) {
 
       // 用户不存在，即未登录
       if (result.count === 0) {
-        if (isSign) {
-          dofn(req, res, fn);
-          return;
-        }
-
-        responses.unauthorized(res, pathname);
+        cb(false);
         return;
       }
 
       // 所有判断项都通过，已登录
-      if (isSign) {
+      cb(true);
+    }, true);
+  });
+}
+
+exports.middleware = function(req, res, fn) {
+  var pathname = url.parse(req.url).pathname;
+
+  if (pathname in notMustSigned) {
+    dofn(req, res, fn);
+  }
+
+  checkSignedIn(req, res, function(isSignedIn) {
+    // 后台登录操作
+    if (pathname === "/api/admin/sign" && req.method === "POST") {
+      if (isSignedIn) {
         responses.success(res, {});
         return;
       }
 
       dofn(req, res, fn);
-    }, true);
+      return;
+    }
+
+    // 后台登录页面
+    if (pathname === "/admin/sigin" && req.method === "GET") {
+      if (isSignedIn) {
+        responses.redirect(res, "/admin/index");
+        return;
+      }
+
+      dofn(req, res, fn);
+      return;
+    }
+
+    // 前台登录操作
+    if (pathname === "/api/sign" && req.method === "POST") {
+      if (isSignedIn) {
+        responses.success(res, {});
+        return;
+      }
+
+      dofn(req, res, fn);
+      return;
+    }
+
+    // 操作请求
+    if (pathname.indexOf("/api/") !== -1) {
+      if (!isSignedIn) {
+        responses.unauthorized(req, pathname);
+        return;
+      }
+
+      dofn(req, res, fn);
+      return;
+    }
+
+
+    // 后台请求页面
+    if (pathname.indexOf("/admin/") !== -1) {
+      if (!isSignedIn) {
+        responses.redirect(res, "/admin/sign");
+        return;
+      }
+
+      dofn(req, res, fn);
+      return;
+    }
+
+    // 前台请求页面
+    if (!isSignedIn) {
+      responses.redirect(res, "/admin/sign/not");
+      return;
+    }
+
+    dofn(req, res, fn);
+    return;
   });
-}
-
-exports.api_middleware = function(req, res, fn) {
-  var pathname = url.parse(req.url).pathname;
-
-  // 后台操作
-  if (pathname.indexOf("/admin/") !== -1) {
-    // 登录操作
-    if (pathname === "/api/admin/sign" && req.method === "POST") {
-      checkSignedIn(req, res, fn, true, true);
-      return;
-    }
-
-    checkSignedIn(req, res, fn, false, true);
-    return;
-  }
-
-  // 前台操作
-  if (mustSigned.indexOf(pathname) !== -1) {
-    // 登录操作
-    if (pathname === "/api/user/sign" && req.method === "POST") {
-      checkSignedIn(req, res, fn, true);
-      return;
-    }
-
-    checkSignedIn(req, res, fn);
-    return;
-  }
-
-  dofn(req, res, fn);
 };
-
-exports.page_middlewar = function(req, res, fn) {};
