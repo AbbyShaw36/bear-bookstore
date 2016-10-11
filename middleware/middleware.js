@@ -21,7 +21,19 @@ var responses = {
   },
   success: function(res, result) {
     res.statusCode = statusCode.success;
+
+    if (typeof result === "string") {
+      res.setHeader("Content-Type", "html");
+      res.write(result);
+      res.end();
+      return;
+    }
+
     res.end(JSON.stringify(result));
+  },
+  redirect: function(res, pathname) {
+    res.redirect(pathname);
+    res.end();
   }
 };
 
@@ -44,10 +56,10 @@ function dofn(req, res, fn) {
  * @param {obj} req 请求
  * @param {obj} res 响应
  * @param {function} fn 执行操作
- * @param {boolean} isSign 是否为登录操作
+ * @param {boolean} isSign 是否为登录操作或获取登录页面
  * @param {boolean} isAdmin 是否为后台操作
  * */
-function checkSignedIn(req, res, fn, isSign, isAdmin) {
+function api_checkSignedIn(req, res, fn, isSign, isAdmin) {
   var cookies = cookie.parse(req.headers.cookie || "");
   var sessionId = cookies.sessionId;
   var pathname = url.parse(req.url).pathname;
@@ -146,7 +158,7 @@ function checkSignedIn(req, res, fn, isSign, isAdmin) {
   });
 }
 
-exports.middleware = function(req, res, fn) {
+exports.api_middleware = function(req, res, fn) {
   var pathname = url.parse(req.url).pathname;
 
   // 后台操作
@@ -175,3 +187,5 @@ exports.middleware = function(req, res, fn) {
 
   dofn(req, res, fn);
 };
+
+exports.page_middlewar = function(req, res, fn) {};

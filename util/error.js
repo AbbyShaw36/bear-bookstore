@@ -87,3 +87,18 @@ exports.authorNotExists = {
   type: "resourceNotFound",
   description: "Author not exists"
 };
+
+exports.orderCodeNotProvided = {
+  type: "illegalArgument",
+  description: "Order code must provided"
+};
+
+exports.orderStatusNotProvided = {
+  type: "illegalArgument",
+  description: "Order status must provided"
+};
+
+exports.orderNotExists = {
+  type: "resourceNotFound",
+  description: "Order not exists"
+};

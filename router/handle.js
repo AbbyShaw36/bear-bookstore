@@ -2,8 +2,11 @@ var admin = require("../web/admin");
 var book = require("../web/book");
 var type = require("../web/type");
 var author = require("../web/author");
+var order = require("../web/order");
+var user = require("../web/user");
 
 exports.handle = {
+  // 接口请求
   "/api/admin/sign": {
     "POST": admin.signin,
     "DELETE": admin.signout
@@ -30,5 +33,28 @@ exports.handle = {
   },
   "/api/admin/author/list": {
     "GET": author.getList
+  },
+  "/api/admin/orderform": {
+    "PUT": order.updateStatus,
+    "GET": order.get
+  },
+  "/api/admin/orderform/list": {
+    "GET": order.getList
+  },
+  "/api/user": {
+    "POST": user.signup,
+  },
+  "/api/user/sign": {
+    "POST": user.signin,
+    "DELETE": user.signout
+  },
+  "/api/book": {
+    "GET": book.get
+  },
+
+
+  // 页面请求
+  "/admin/sign": {
+    "GET": admin.getSigninPage
   }
 };

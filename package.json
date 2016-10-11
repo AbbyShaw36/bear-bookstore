@@ -9,6 +9,7 @@
     "url": "latest",
     "cookie": "latest",
     "mime": "latest",
-    "path": "latest"
+    "path": "latest",
+    "pug": "latest"
   }
 }

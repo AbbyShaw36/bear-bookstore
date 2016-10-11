@@ -210,4 +210,65 @@ dao.getList = function(list, cb) {
   });
 };
 
+dao.getListCount = function(list, cb) {
+  var orderForm = list.getContent();
+  var code = orderForm.getCode();
+  var user = orderForm.getUser();
+  var publishTime = orderForm.getPublishTime();
+  var status = orderForm.getStatus();
+  var sql =
+    "SELECT count(*) FROM orderForm";
+  var inserts = [];
+  var arr = [];
+
+  if (code !== undefined) {
+    arr.pus("code=?");
+    inserts.push(code);
+  }
+
+  if (user !== undefined) {
+    arr.push("user.id=?");
+    inserts.push(user);
+  }
+
+  if (publishTime !== undefined) {
+    if (publishTime.max !== undefined) {
+      arr.push("publishTime<?");
+      inserts.push(publishTime.max);
+    }
+
+    if (publishTime.min !== undefined) {
+      arr.push("publishTime>?");
+      inserts.push(publishTime.min);
+    }
+  }
+
+  if (status !== undefined) {
+    arr.push("status=?");
+    inserts.push(status);
+  }
+
+  if (arr.length > 0) {
+    sql += " WHERE " + arr.join(" AND ");
+  }
+
+  sql = mysql.format(sql, inserts);
+  console.log(sql);
+
+  connection.query(sql, function(err, result) {
+    if (err) {
+      logger.error("[get list count error] - " + err.message);
+      cb(error.internalServerErr);
+      return;
+    }
+
+    logger.trace("[get list count result]-----------------");
+    console.log(result);
+
+    cb(null, {
+      count: result[0]["count(*)"]
+    });
+  });
+};
+
 exports.dao = dao;
