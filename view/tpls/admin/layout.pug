@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    block title
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="css/normalize.css")
+    link(rel="stylesheet", href="css/base.css")
+    link(rel="stylesheet", href="css/pages.css")
+  body
+    include ./head.pug
+    .container
+      include ./aside.pug
+      .main
+        include ./breadcrumb.pug
+        block content

@@ -5,7 +5,6 @@ var error = require("../util/error");
 var getQuery = require("../util/getQuery").getQuery;
 var User = require("../model/user").User;
 var service = require("../service/admin").service;
-var getSigninPage = require("../view/admin/signin").getPage;
 
 /*
  * 登录
@@ -113,8 +112,4 @@ exports.signout = function(req, res, cb) {
     // 返回空对象
     cb(null, {});
   });
-};
-
-exports.getSigninPage = function(req, res, cb) {
-  getSigninPage(cb);
 };

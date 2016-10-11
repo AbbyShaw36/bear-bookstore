@@ -4,6 +4,7 @@ var type = require("../web/type");
 var author = require("../web/author");
 var order = require("../web/order");
 var user = require("../web/user");
+var page_admin = require("../web/page_admin");
 
 exports.handle = {
   // 接口请求
@@ -55,6 +56,9 @@ exports.handle = {
 
   // 页面请求
   "/admin/sign": {
-    "GET": admin.getSigninPage
+    "GET": page_admin.signin
+  },
+  "/admin/index": {
+    "GET": page_admin.index
   }
 };

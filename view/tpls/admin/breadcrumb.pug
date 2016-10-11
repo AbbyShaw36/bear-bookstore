@@ -1,0 +1,6 @@
+- if (breadcrumbs)
+  .breadcrumb
+    each item,i in breadcrumbs
+      a(href=item.url) item.name
+      - if (i !== breadcrumbs.length - 1)
+        span >>
