@@ -13,10 +13,10 @@ html
         .signin__body
           .row
             label(for="signin-name").label.signin__label 用户名
-            input(type="text",id="signin-name").input.signin__input
+            input(type="text",id="signin-name").input.signin__input#js_signin__name
           .row
             label(for="signin-password").label.signin__label 密码
-            input(type="text",id="signin-password").input.signin__input
+            input(type="text",id="signin-password").input.signin__input#js_signin__password
           .row
-            input(type="button",value="登录").btn.signin__btn
+            input(type="button",value="登录").btn.signin__btn#js_signin__submit
     script(src="js/signin.js")
