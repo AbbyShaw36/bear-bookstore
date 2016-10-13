@@ -64,6 +64,18 @@ ul {
 }
 
 
+/* page  */
+
+.page {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e4e6e9;
+}
+
+
 /* header */
 
 .main-header {
@@ -193,4 +205,13 @@ ul {
   border-style: solid;
   border-width: 20px 10px 20px 0;
   border-color: transparent #3f7fcf transparent transparent;
+}
+
+
+/* main */
+
+.main {
+  min-height: 1000px;
+  margin-left: 204px;
+  background: #fff;
 }

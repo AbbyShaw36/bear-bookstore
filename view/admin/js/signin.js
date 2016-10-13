@@ -7,7 +7,7 @@
   function globalLoadListener() {
     var submitBtn = doc.getElementById("signin__submit");
 
-    submitBtn.addEventListenter("click", signinForm_submitClickListener,
+    submitBtn.addEventListener("click", signinForm_submitClickListener,
       false);
   }
 

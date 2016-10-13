@@ -9,3 +9,7 @@ exports.signin = function(req, res, cb) {
 exports.index = function(req, res, cb) {
   page.index(cb);
 };
+
+exports.bookList = function(req, res, cb) {
+  page.bookList(cb);
+};

@@ -16,7 +16,7 @@ exports.index = function(cb) {
 };
 
 exports.bookList = function(cb) {
-  var html = pug.renderFile("view/tpls/admin/booolist.pug", {
+  var html = pug.renderFile("view/tpls/admin/booklist.pug", {
     title: "后台管理系统-书籍管理"
   });
 
@@ -45,4 +45,4 @@ exports.orderList = function(cb) {
   });
 
   cb(null, html);
-}
+};

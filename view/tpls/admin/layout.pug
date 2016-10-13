@@ -3,17 +3,18 @@ html
   head
     title= title
     meta(charset="utf-8")
-    link(rel="stylesheet", href="css/normalize.css")
-    link(rel="stylesheet", href="css/base.css")
-    link(rel="stylesheet", href="css/pages.css")
+    link(rel="stylesheet", href="/admin/css/normalize.css")
+    link(rel="stylesheet", href="/admin/css/base.css")
+    link(rel="stylesheet", href="/admin/css/pages.css")
   body
-    include ./head.pug
-    .container
-      include ./aside.pug
-      .main
-        include ./breadcrumb.pug
-        .main__content
-          block content
-    script(src="js/util.js")
-    script(src="js/public.js")
+    .page
+      include ./head.pug
+      .container
+        include ./aside.pug
+        .main
+          include ./breadcrumb.pug
+          .main__content
+            block content
+    script(src="/admin/js/util.js")
+    script(src="/admin/js/public.js")
     block script
