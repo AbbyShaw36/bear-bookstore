@@ -20,9 +20,12 @@ Util.ajax = function(args) {
   }
 
   request.open(method, url, async);
-  request.onreadyStatechange = function() {
+  request.onreadystatechange = function() {
+    console.log(request.readyState);
     if (request.readyState == 4) {
+      console.log(request.status);
       if (request.status === 200) {
+        console.log("request success");
         success(request.responseText);
         return;
       }
@@ -30,4 +33,5 @@ Util.ajax = function(args) {
       error(request);
     }
   };
+  request.send(data);
 };

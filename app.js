@@ -12,5 +12,5 @@ function handleRequest(req, res) {
 }
 
 http.createServer(handleRequest).listen(global.config.port, function() {
-  logger.trace("Server has started.");
+  logger.trace("Server listening on port " + global.config.port + ".");
 });

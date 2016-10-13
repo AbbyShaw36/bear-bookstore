@@ -1,6 +1,6 @@
 var cookie = require("cookie");
 var User = require("../model/user").User;
-var page = require("../view/page_admin");
+var page = require("../service/page_admin");
 
 exports.signin = function(req, res, cb) {
   page.signin(cb);

@@ -13,7 +13,7 @@ exports.router = function(req, res) {
   logger.trace("About to route a request for " + pathname);
 
   // 请求静态页面
-  if (typeof handle[pathname] !== "function") {
+  if (!handle[pathname]) {
     logger.trace("The request for " + pathname + " is a static serve.");
     serveStatic(req, res);
     return;

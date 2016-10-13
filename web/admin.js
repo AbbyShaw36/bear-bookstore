@@ -45,9 +45,9 @@ exports.signin = function(req, res, cb) {
 
     // 提交到service层执行
     service.signin(user, function(err, result) {
+      const expireDays = 1;
       var sessionId = null;
-      var date = null;
-      var expireDays = 1;
+      var time = null;
       var newCookie = "";
 
       if (err) {
@@ -57,17 +57,15 @@ exports.signin = function(req, res, cb) {
 
       // 执行成功，获得相应sessionId
       sessionId = result.sessionId;
-      date = new Date();
-      date.setTime(date.getTime() + expireDays * 24 * 3600 * 1000);
+      time = 60 * 60 * 24 * expireDays;
 
       // 创建cookie
       newCookie = cookie.serialize("sessionId", sessionId, {
         path: "/admin/",
-        expires: date.toGMTString(),
-        secure: true,
-        httpOnly: true
+        httpOnly: true,
+        maxAge: time
       });
-      res.append("Set-Cookie", newCookie);
+      res.setHeader("Set-Cookie", newCookie);
 
       // 返回空对象
       cb(null, {});

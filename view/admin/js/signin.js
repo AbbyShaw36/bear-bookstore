@@ -2,10 +2,10 @@
 (function(global, doc) {
   "use strict";
 
-  global.addEventListenter("load", globalLoadListener, false);
+  global.addEventListener("load", globalLoadListener, false);
 
   function globalLoadListener() {
-    var submitBtn = doc.getElementById("js_signin__submit");
+    var submitBtn = doc.getElementById("signin__submit");
 
     submitBtn.addEventListenter("click", signinForm_submitClickListener,
       false);
@@ -13,8 +13,8 @@
 
   function signinForm_submitClickListener() {
     // 获取表单信息
-    var name = doc.getElementById("js_signin__name").value.trim();
-    var password = doc.getElementById("js_signin__password").value.trim();
+    var name = doc.getElementById("signin__name").value.trim();
+    var password = doc.getElementById("signin__password").value.trim();
 
     // 用于提交
     var data = "";

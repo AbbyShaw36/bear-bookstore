@@ -13,7 +13,7 @@ connection.connect(function(err) {
     return;
   }
 
-  logger.warn("Connect mysql database success.");
+  logger.trace("Connect mysql database success.");
 });
 
 exports.connection = connection;

@@ -32,7 +32,9 @@ var responses = {
     res.end(JSON.stringify(result));
   },
   redirect: function(res, pathname) {
-    res.redirect(pathname);
+    res.writeHead(302, {
+      "Location": pathname
+    });
     res.end();
   }
 };
@@ -65,6 +67,7 @@ function checkSignedIn(req, res, cb) {
 
   // 没有cookie为sessionId，未登录
   if (!sessionId) {
+    logger.trace("SessionId is not provided.");
     cb(false);
     return;
   }
@@ -86,7 +89,8 @@ function checkSignedIn(req, res, cb) {
     id = result.user;
 
     // session不存在，未登录
-    if (!id) {
+    if (id === undefined) {
+      logger.trace("SessionId is not exists.")
       cb(false);
       return;
     }
@@ -100,6 +104,7 @@ function checkSignedIn(req, res, cb) {
         return;
       }
 
+      logger.tace("The user has not signned in.");
       cb(false);
       return;
     }
@@ -115,11 +120,13 @@ function checkSignedIn(req, res, cb) {
 
       // 用户不存在，即未登录
       if (result.count === 0) {
+        logger.tace("The user signin is not exists.");
         cb(false);
         return;
       }
 
       // 所有判断项都通过，已登录
+      logger.trace("The user has signed in");
       cb(true);
     }, true);
   });
@@ -145,7 +152,7 @@ exports.middleware = function(req, res, fn) {
     }
 
     // 后台登录页面
-    if (pathname === "/admin/sigin" && req.method === "GET") {
+    if (pathname === "/admin/sign" && req.method === "GET") {
       if (isSignedIn) {
         responses.redirect(res, "/admin/index");
         return;
