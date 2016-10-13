@@ -1,37 +1,29 @@
-var Util = {};
+;
+(function(global, document) {
+  "use strict";
 
-Util.ajax = function(args) {
-  var method = args.method;
-  var url = args.url;
-  var data = args.data || null;
-  var async = args.async || false;
-  var success = args.success;
-  var error = args.error;
-  var request = new XMLHttpRequest();
-
-  if (!method) {
-    throw new Error("Request method must provided");
-    return;
-  }
-
-  if (!url) {
-    throw new Error("Request url must provided");
-    return;
-  }
-
-  request.open(method, url, async);
-  request.onreadystatechange = function() {
-    console.log(request.readyState);
-    if (request.readyState == 4) {
-      console.log(request.status);
-      if (request.status === 200) {
-        console.log("request success");
-        success(request.responseText);
-        return;
-      }
-
-      error(request);
-    }
+  var globalLoadListener = function() {
+    // 退出
+    var signoutBtn = document.getElementById("signoutBtn");
+    signoutBtn.addEventListener("click", signoutBtnClickListener, false);
   };
-  request.send(data);
-};
+
+  // 退出事件
+  var signoutBtnClickListener = function() {
+    Util.ajax({
+      mathod: "DELETE",
+      url: "/api/admin/sign",
+      async: true,
+      success: function(data) {
+        alert("退出成功！");
+        location.href = "sign";
+      },
+      error: function(req) {
+        alert("退出失败！");
+        throw new Error(req.statusText);
+      }
+    });
+  };
+
+  global.addEventListener("load", globalLoadListener, false);
+})(window, document);

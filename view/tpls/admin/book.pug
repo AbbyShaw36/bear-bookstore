@@ -1,0 +1,26 @@
+extend ./layout.pug
+
+block content
+  .book
+    .row
+      label(for="book__name") 书名：
+      input(type="text")#book__name
+    .row
+      label(for="book__type") 类型：
+      span.select
+        select#book__type
+          option(value="") -请选择-
+    .row
+      label(for="book__author") 作者：
+      span.select
+        select#book__author
+          option(value="") -请选择-
+    .row
+      label(for="book__stock") 库存
+      input(type="text")#book__stock
+    .row
+      label(for="book__description") 简介
+      textarea#book__description
+    .row
+      input(type="button",value="保存")
+      input(type="button",value="返回")

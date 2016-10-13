@@ -1,0 +1,49 @@
+extend ./layout.pug
+
+block content
+  .search
+    .row
+      span.search__label-box
+        label.search__label(for="search__name") 书名
+        input(type="text")#search__name
+      span.search__label-box
+        label.search__label(for="search__type") 类别
+        span.select
+          select#search__type
+            option(value="") 全部
+      span.search__label-box
+        label.search__label(for="search__author") 作者
+        span.select
+          select#search__author
+            option(value="") 全部
+    .row
+      span.search__label-box
+        label.search__label(for="search__publishTime__start") 发布时间
+        input(type="time")#search__publishTime__start
+        label(for="search__publishTime__end") 至
+        input(type="time")#search__publishTime__end
+      span.search__label-box
+        label.search__label(for="search__stock") 库存
+        input(type="text")#search__stock
+  .table
+    table
+      thead
+        tr
+          th 序号
+          th 书名
+          th 类别
+          th 作者
+          th 发布时间
+          th 库存
+          th 操作
+      tbody
+        tr
+          td 1
+          td 书名1
+          td 文学
+          td me
+          td 2016-06-12
+          td 100
+          td
+            a(href="#") 修改
+            a(href="#") 删除

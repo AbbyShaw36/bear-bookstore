@@ -18,7 +18,6 @@
 
     // 用于提交
     var data = "";
-    var url = "/api/admin/sign";
 
     // 判断是否为空
     if (!name || !password) {
@@ -33,7 +32,7 @@
     // ajax提交
     Util.ajax({
       method: "POST",
-      url: url,
+      url: "/api/admin/sign",
       async: true,
       data: data,
       success: function(data) {
