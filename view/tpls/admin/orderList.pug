@@ -1,4 +1,38 @@
 extend ./layout.pug
 
 block content
-  .
+  .search
+    span.search__label-box
+      label(for="search__code").search__label 订单号
+      input(type="text")#search__code
+    span.search__label-box
+      label(for="search__user").search__label 用户
+      input(type="text")#search__user
+    span.search__label-box
+      label(for="search__publishTime__start") 下单时间
+      input(type="time")#search__publishTime__start
+      label(for="search__publishTime__end") 至
+      input(type="time")#search__publishTime__end
+    span.search__label-box
+      label(for="search__status") 状态
+      span.select
+        select#search__status
+          option(value="") 全部
+  table.table
+    thead
+      tr
+        th 订单号
+        th 用户
+        th 状态
+        th 下单时间
+        th 操作
+    tbody
+      tr
+        td 1234567890
+        td aaa
+        td 未发货
+        td 2016-2-12 16:00
+        td
+          a(href="#") 详情
+          a(href="#") 发货
+
