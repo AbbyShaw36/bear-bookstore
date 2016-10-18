@@ -63,5 +63,8 @@ exports.handle = {
   },
   "/admin/book/list": {
     "GET": page_admin.bookList
+  },
+  "/admin/book": {
+    "GET": page_admin.book
   }
 };

@@ -17,7 +17,10 @@ exports.index = function(cb) {
 
 exports.bookList = function(cb) {
   var html = pug.renderFile("view/tpls/admin/booklist.pug", {
-    title: "后台管理系统-书籍管理"
+    title: "后台管理系统-书籍管理",
+    breadcrumbs: [{
+      name: "书籍管理"
+    }]
   });
 
   cb(null, html);
@@ -25,13 +28,19 @@ exports.bookList = function(cb) {
 
 exports.addBook = function(cb) {
   var html = pug.renderFile("view/tpls/admin/book.pug", {
-    title: "后台管理系统-书籍管理-新增"
+    title: "后台管理系统-书籍管理-新增",
+    breadcrumbs: [{
+      name: "书籍管理",
+      url: "/admin/book/list"
+    }, {
+      name: "新增"
+    }]
   });
 
   cb(null, html);
 };
 
-exports.updateBook = function(cb) {
+exports.updateBook = function(book, cb) {
   var html = pug.renderFile("view/tpls/admin/book.pug", {
     title: "后台管理系统-书籍管理-编辑"
   });

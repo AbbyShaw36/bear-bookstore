@@ -1,6 +1,9 @@
 - if (breadcrumbs)
   .breadcrumb
     each item,i in breadcrumbs
-      a(href=item.url) item.name
+      - if(item.url)
+        a(href=item.url).breadcrumb__item= item.name
+      - else
+        span.breadcrumb__item= item.name
       - if (i !== breadcrumbs.length - 1)
-        span >>
+        span.breadcrumb__interval >>

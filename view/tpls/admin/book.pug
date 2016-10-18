@@ -4,23 +4,21 @@ block content
   .book
     .row
       label(for="book__name") 书名：
-      input(type="text")#book__name
+      input(type="text")#book__name.input.book__input
     .row
       label(for="book__type") 类型：
-      span.select
-        select#book__type
-          option(value="") -请选择-
+      select#book__type.select.book__select
+        option(value="") -请选择-
     .row
       label(for="book__author") 作者：
-      span.select
-        select#book__author
-          option(value="") -请选择-
+      select#book__author.select.book__select
+        option(value="") -请选择-
     .row
-      label(for="book__stock") 库存
-      input(type="text")#book__stock
+      label(for="book__stock") 库存：
+      input(type="number")#book__stock.input.book__num
     .row
-      label(for="book__description") 简介
-      textarea#book__description
+      label(for="book__description") 简介：
+      textarea#book__description.textarea.bookk__textarea
     .row
-      input(type="button",value="保存")
-      input(type="button",value="返回")
+      input(type="button",value="保存").btn.blue.border-radius
+      input(type="button",value="返回").btn.orange.border-radius

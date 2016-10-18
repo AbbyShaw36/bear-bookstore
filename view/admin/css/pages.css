@@ -1,0 +1,54 @@
+/* book list */
+
+.book-list .topbar {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.book-list .search .row {
+  margin-bottom: 10px;
+}
+
+.book-list .search__label-box {
+  margin-right: 60px;
+}
+
+.book-list .search__label {
+  display: inline-block;
+  width: 64px;
+  margin-right: 4px;
+  text-align: right;
+}
+
+.book-list .search__input {
+  width: 310px;
+}
+
+.book-list .search__select {
+  width: 120px;
+}
+
+.book-list .search__date {
+  width: 140px;
+}
+
+.book-list .search__num {
+  width: 120px;
+}
+
+.book-list .search__date__interval {
+  margin: 0 7px;
+}
+
+.book-list .search__btn {
+  width: 120px;
+  margin-left: 68px;
+}
+
+.book-list .table {
+  width: 100%;
+}
+
+.book-list .table .link+.link {
+  margin-left: 20px;
+}
