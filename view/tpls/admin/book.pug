@@ -3,22 +3,22 @@ extend ./layout.pug
 block content
   .book
     .row
-      label(for="book__name") 书名：
+      label(for="book__name").label.book__label 书名：
       input(type="text")#book__name.input.book__input
     .row
-      label(for="book__type") 类型：
+      label(for="book__type").label.book__label 类型：
       select#book__type.select.book__select
         option(value="") -请选择-
     .row
-      label(for="book__author") 作者：
+      label(for="book__author").label.book__label 作者：
       select#book__author.select.book__select
         option(value="") -请选择-
     .row
-      label(for="book__stock") 库存：
+      label(for="book__stock").label.book__label 库存：
       input(type="number")#book__stock.input.book__num
     .row
-      label(for="book__description") 简介：
-      textarea#book__description.textarea.bookk__textarea
-    .row
-      input(type="button",value="保存").btn.blue.border-radius
-      input(type="button",value="返回").btn.orange.border-radius
+      label(for="book__description").label.book__label 简介：
+      textarea#book__description.textarea.book__textarea
+    .row.book__btn
+      input(type="button",value="保存").btn.blue.radius
+      input(type="button",value="返回").btn.orange.radius

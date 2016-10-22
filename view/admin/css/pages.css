@@ -16,7 +16,7 @@
 .book-list .search__label {
   display: inline-block;
   width: 64px;
-  margin-right: 4px;
+  margin-right: 10px;
   text-align: right;
 }
 
@@ -37,12 +37,12 @@
 }
 
 .book-list .search__date__interval {
-  margin: 0 7px;
+  margin: 0 8px;
 }
 
 .book-list .search__btn {
   width: 120px;
-  margin-left: 68px;
+  margin-left: 74px;
 }
 
 .book-list .table {
@@ -50,5 +50,42 @@
 }
 
 .book-list .table .link+.link {
+  margin-left: 20px;
+}
+
+
+/* book */
+
+.book .row {
+  margin-bottom: 20px;
+}
+
+.book .book__label {
+  width: 60px;
+}
+
+.book .book__input {
+  width: 200px;
+}
+
+.book .book__select,
+.book .book__num {
+  width: 100px;
+}
+
+.book .book__textarea {
+  width: 400px;
+  height: 200px;
+}
+
+.book .book__btn {
+  margin-left: 60px;
+}
+
+.book .book__btn .btn {
+  width: 100px;
+}
+
+.book .book__btn .btn+.btn {
   margin-left: 20px;
 }

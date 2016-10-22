@@ -31,3 +31,7 @@ exports.book = function(req, res, cb) {
     page.addBook(cb);
   });
 };
+
+exports.orderList = function(req, res, cb) {
+  page.orderList(cb);
+};

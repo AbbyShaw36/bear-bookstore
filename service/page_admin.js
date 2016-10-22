@@ -50,7 +50,10 @@ exports.updateBook = function(book, cb) {
 
 exports.orderList = function(cb) {
   var html = pug.renderFile("view/tpls/admin/orderlist.pug", {
-    title: "后台管理系统-订单管理"
+    title: "后台管理系统-订单管理",
+    breadcrumbs: [{
+      name: "订单管理"
+    }]
   });
 
   cb(null, html);
